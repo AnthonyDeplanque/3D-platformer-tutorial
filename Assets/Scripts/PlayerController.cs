@@ -17,6 +17,19 @@ public class PlayerController : MonoBehaviour
     characterController = GetComponent<CharacterController>();
     anim = GetComponent<Animator>();
   }
+  public Vector3 getMoveDirection()
+  {
+    return moveDirection;
+  }
+  public void setMoveDirection(Vector3 moveDirection)
+  {
+    this.moveDirection = moveDirection;
+  }
+  public float getJumpForce()
+  {
+    return jumpForce;
+  }
+
   void Update()
   {
     anim.SetBool("isWalking", isWalking);
