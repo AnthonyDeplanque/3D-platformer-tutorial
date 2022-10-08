@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
   public CharacterController characterController;
   public float moveSpeed;
+  private float initialSpeed;
   public float jumpForce;
   public float gravity;
   private Vector3 moveDirection;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
   void Start()
   {
     characterController = GetComponent<CharacterController>();
+    initialSpeed = moveSpeed;
     anim = GetComponent<Animator>();
   }
   public Vector3 getMoveDirection()
@@ -33,6 +35,16 @@ public class PlayerController : MonoBehaviour
   void Update()
   {
     anim.SetBool("isWalking", isWalking);
+
+    if (Input.GetButtonDown("Fire2"))
+    {
+      moveSpeed = initialSpeed * 2;
+    }
+    if (Input.GetButtonUp("Fire2"))
+    {
+      moveSpeed = initialSpeed;
+    }
+
     moveDirection = new Vector3(
         Input.GetAxis("Horizontal") * moveSpeed,
         moveDirection.y,
