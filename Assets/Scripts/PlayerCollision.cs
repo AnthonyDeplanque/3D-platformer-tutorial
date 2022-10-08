@@ -10,6 +10,8 @@ public class PlayerCollision : MonoBehaviour
   private PlayerController playerController;
   private bool canInstantiateParticles = true;
   private float playerJumpForce;
+  public AudioClip pow;
+  private AudioSource audioSource;
   public GameObject cam1;
   public GameObject cam2;
 
@@ -17,6 +19,7 @@ public class PlayerCollision : MonoBehaviour
   void Start()
   {
     playerController = GetComponent<PlayerController>();
+    audioSource = GetComponent<AudioSource>();
 
   }
 
@@ -67,7 +70,7 @@ public class PlayerCollision : MonoBehaviour
     {
       canInstantiateParticles = false;
       playerController.setMoveDirection(new Vector3(0, playerJumpForce, 0));
-
+      audioSource.PlayOneShot(pow);
       Vector3 size = hit.gameObject.transform.parent.gameObject.GetComponent<Transform>().localScale;
       iTween.PunchScale(hit.gameObject.transform.parent.gameObject, new Vector3(size.x / 2, size.y * 3, size.z / 2), 0.5f);
       GameObject particles = Instantiate(mobParticle, hit.transform.position, Quaternion.identity);

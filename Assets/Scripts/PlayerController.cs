@@ -12,11 +12,13 @@ public class PlayerController : MonoBehaviour
   public float gravity;
   private Vector3 moveDirection;
   public Animator anim;
+
   bool isWalking = false;
   void Start()
   {
     characterController = GetComponent<CharacterController>();
     initialSpeed = moveSpeed;
+
     anim = GetComponent<Animator>();
   }
   public Vector3 getMoveDirection()
